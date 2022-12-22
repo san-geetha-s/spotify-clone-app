@@ -5,6 +5,7 @@ import Login from './Login';
 import SpotifyWebApi from 'spotify-web-api-js'
 import Player from './Player/Player';
 import { useDataLayerValue } from './DataLayer';
+import { ActionTypes } from '@mui/base';
 const spotify=new SpotifyWebApi();
 function App() {
   
@@ -31,12 +32,21 @@ function App() {
        })
       
     })
+    spotify.getUserPlaylists().then((playlists)=>{
+      dispatch({
+        type: "SET_PLAYLISTS",
+        playlists: playlists
+      })
+     })
    }
 
   
    
 
  },[])
+
+
+ 
 
  
   return (
